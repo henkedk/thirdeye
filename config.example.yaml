@@ -1,0 +1,24 @@
+cameras:
+  - name: Indkoersel
+    ip: 192.168.1.151
+    username: python
+    password: "changeme"
+  # Add more cameras...
+
+protect:
+  ssh_host: 192.168.1.1      # UDM Pro SE IP
+  ssh_user: root
+  ssh_key: ~/.ssh/id_ed25519
+  db_socket: /run/postgresql
+  db_port: 5433
+  db_name: unifi-protect
+  db_user: postgres
+
+detection:
+  pre_buffer_sec: 2
+  post_buffer_sec: 2
+  snapshot_on_detect: true
+
+logging:
+  level: INFO
+  file: null  # null = stderr only
