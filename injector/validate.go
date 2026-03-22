@@ -9,10 +9,26 @@ import (
 
 var uuidRegex = regexp.MustCompile(`^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$`)
 
+// All smart detection types supported by UniFi Protect.
+// The injector accepts any of these — the bridge client decides which ones it can provide.
 var validDetectTypes = map[string]bool{
-	"person":  true,
-	"vehicle": true,
-	"animal":  true,
+	// Visual detection types
+	"person":       true,
+	"vehicle":      true,
+	"animal":       true,
+	"package":      true,
+	"licensePlate": true,
+	"face":         true,
+	// Audio detection types
+	"smoke":       true,
+	"cmonx":       true,
+	"bark":        true,
+	"burglar":     true,
+	"glass_break": true,
+	"car_alarm":   true,
+	"car_horn":    true,
+	"speak":       true,
+	"baby_cry":    true,
 }
 
 func validateUUID(s string) error {
@@ -35,7 +51,7 @@ func validateTimestamp(ts int64) error {
 
 func validateDetectType(t string) error {
 	if !validDetectTypes[t] {
-		return fmt.Errorf("invalid detect type: %s (valid: person, vehicle, animal)", t)
+		return fmt.Errorf("invalid detect type: %s", t)
 	}
 	return nil
 }

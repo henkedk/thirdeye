@@ -55,6 +55,15 @@ Validated DB write proxy. No camera logic, no protocol handling. Accepts structu
 }
 ```
 
+**Supported `type` values** — the injector accepts all Protect smart detection types:
+
+| Category | Types |
+|----------|-------|
+| Visual | `person`, `vehicle`, `animal`, `package`, `licensePlate`, `face` |
+| Audio | `smoke`, `cmonx`, `bark`, `burglar`, `glass_break`, `car_alarm`, `car_horn`, `speak`, `baby_cry` |
+
+The injector is type-agnostic — it validates the type exists in Protect's vocabulary and passes it through. Bridge clients decide which types they can supply based on their camera/AI capabilities.
+
 Response: `{"eventId": "uuid", "smartDetectObjectId": "uuid"}`
 
 ### POST /event/end payload

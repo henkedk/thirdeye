@@ -181,18 +181,18 @@ func (d *DB) CameraExists(id string) (bool, error) {
 }
 
 // EnableSmartDetect patches featureFlags and smartDetectSettings on all adopted third-party cameras
-// so Protect UI shows smart detection filters.
+// so Protect UI shows smart detection filters for all supported visual types.
 func (d *DB) EnableSmartDetect() (int64, error) {
 	result, err := d.conn.Exec(`UPDATE cameras
 		SET "featureFlags" = jsonb_set(
 			COALESCE("featureFlags"::jsonb, '{}'::jsonb),
 			'{smartDetectTypes}',
-			'["person","vehicle"]'::jsonb
+			'["person","vehicle","animal","package","licensePlate","face"]'::jsonb
 		),
 		"smartDetectSettings" = jsonb_set(
 			COALESCE("smartDetectSettings"::jsonb, '{}'::jsonb),
 			'{objectTypes}',
-			'["person","vehicle"]'::jsonb
+			'["person","vehicle","animal","package","licensePlate","face"]'::jsonb
 		),
 		"updatedAt" = $1
 		WHERE "isThirdPartyCamera" = true AND "isAdopted" = true AND host IS NOT NULL`,

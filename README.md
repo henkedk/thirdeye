@@ -56,11 +56,34 @@ The injector is intentionally minimal — a locked-down gate to Protect's databa
 
 ## Detection types
 
-| Detection | Protect UI |
-|-----------|------------|
-| 🧑 Person | Smart Detection → Person |
-| 🚗 Vehicle | Smart Detection → Vehicle |
-| 🐕 Animal | Smart Detection → Animal |
+The injector supports **every smart detection type** that UniFi Protect understands. Bridge clients supply whatever their cameras or AI pipeline can deliver.
+
+### Visual
+
+| Type | Protect UI | Reolink bridge |
+|------|-----------|----------------|
+| 🧑 `person` | Smart Detection → Person | ✅ Native Baichuan |
+| 🚗 `vehicle` | Smart Detection → Vehicle | ✅ Native Baichuan |
+| 🐕 `animal` | Smart Detection → Animal | ✅ Native Baichuan |
+| 📦 `package` | Smart Detection → Package | 🔜 Doorbell models |
+| 🪪 `licensePlate` | License Plate Recognition | 🔜 Via AI middleware |
+| 👤 `face` | Face Recognition | 🔜 Via AI middleware |
+
+### Audio
+
+| Type | Protect UI | Reolink bridge |
+|------|-----------|----------------|
+| 🔥 `smoke` | Smoke Alarm | 🔜 Via AI middleware |
+| 💨 `cmonx` | CO Alarm | 🔜 Via AI middleware |
+| 🐕 `bark` | Dog Bark | 🔜 Via AI middleware |
+| 🚨 `burglar` | Burglar Alarm | 🔜 Via AI middleware |
+| 💥 `glass_break` | Glass Break | 🔜 Via AI middleware |
+| 🚙 `car_alarm` | Car Alarm | 🔜 Via AI middleware |
+| 📢 `car_horn` | Car Horn | 🔜 Via AI middleware |
+| 🗣️ `speak` | Speech | 🔜 Via AI middleware |
+| 👶 `baby_cry` | Baby Cry | 🔜 Via AI middleware |
+
+> **The injector doesn't care where detections come from.** Direct camera AI, a local Frigate/CodeProject.AI instance, a custom ML pipeline — anything that can POST JSON with a type and thumbnail works.
 
 Events appear in Protect's timeline with thumbnails, timestamps, and proper smart detection labels. Filter, search, and get alerts — just like native cameras.
 
