@@ -1,0 +1,14 @@
+[Unit]
+Description=thirdeye-injector — Smart detection bridge for UniFi Protect
+After=unifi-protect.service postgresql.service
+
+[Service]
+Type=simple
+ExecStart=/data/thirdeye-injector/thirdeye-injector --config /data/thirdeye-injector/config.yaml
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
