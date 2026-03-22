@@ -358,7 +358,7 @@ The PG backend inserts JPEG directly into the `thumbnails` table. UBV files are 
 - Smart detection zones / line crossing (v2 candidates)
 
 ## License
-**MIT** — see LICENSE file.
+**PolyForm Noncommercial 1.0.0** — see LICENSE file. Free to use, fork, modify for personal/noncommercial purposes. Not for commercial use.
 
 ### Dependency & attribution analysis
 

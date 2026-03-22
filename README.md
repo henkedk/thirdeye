@@ -6,6 +6,8 @@ Inject person, vehicle, and animal AI detections from third-party cameras into U
 
 ---
 
+> ⚠️ **Disclaimer:** This project is vibe-coded and writes directly to your UniFi Protect database. Use entirely at your own risk. The authors take no responsibility for data loss, corrupted Protect installations, or any other damage. Back up your UDM before use. You have been warned.
+
 UniFi Protect lets you adopt third-party cameras via ONVIF. But those cameras lose their AI smarts in the process — no person detection, no vehicle alerts, no smart filtering. Just basic motion.
 
 thirdeye fixes that. It listens to your cameras' native AI detection feeds and injects the events directly into Protect's database. Your third-party cameras get the same smart detection UI as native UniFi cameras.
@@ -224,4 +226,6 @@ thirdeye is not affiliated with or endorsed by Ubiquiti Inc. or Reolink.
 
 ## License
 
-[MIT](LICENSE) — Copyright (c) 2026 Jens Henke
+[PolyForm Noncommercial 1.0.0](LICENSE) — Copyright (c) 2026 Jens Henke
+
+Free to use, fork, and modify for personal and noncommercial purposes. Not free to use commercially.
