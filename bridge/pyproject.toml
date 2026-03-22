@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "thirdeye-bridge"
+version = "1.0.0"
+description = "Reolink AI detection bridge for UniFi Protect"
+requires-python = ">=3.11"
+dependencies = [
+    "reolink-aio>=0.9.0",
+    "aiohttp>=3.9.0",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+thirdeye-bridge = "thirdeye_bridge.bridge:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

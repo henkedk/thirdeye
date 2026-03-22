@@ -10,3 +10,4 @@ venv/
 config.yaml
 *.log
 .env
+injector/thirdeye-injector
