@@ -171,7 +171,24 @@ thirdeye-bridge --config config.yaml
 Or with Docker:
 
 ```bash
-docker run -v ./config.yaml:/app/config.yaml henkedk/thirdeye-bridge
+git clone https://github.com/henkedk/thirdeye.git
+cd thirdeye
+
+# Copy your config into the docker directory
+cp /path/to/your/config.yaml docker/config.yaml
+
+# Build and run
+cd docker
+docker compose up -d
+```
+
+Or build and run the image directly:
+
+```bash
+docker build -t thirdeye-bridge thirdeye/bridge
+docker run -d --restart unless-stopped --network host \
+  -v /path/to/config.yaml:/app/config.yaml:ro \
+  thirdeye-bridge
 ```
 
 #### Run as a systemd service (optional)
