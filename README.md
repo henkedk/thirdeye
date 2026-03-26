@@ -138,6 +138,10 @@ chmod +x /data/on_boot.d/10-thirdeye-injector.sh
 ### 3. Run the bridge
 
 ```bash
+# Create a virtual environment (required on Raspberry Pi OS Bookworm+)
+python3 -m venv ~/thirdeye-env
+source ~/thirdeye-env/bin/activate
+
 pip install thirdeye-bridge
 ```
 
@@ -158,6 +162,9 @@ detection:
 ```
 
 ```bash
+# If not already in the venv:
+source ~/thirdeye-env/bin/activate
+
 thirdeye-bridge --config config.yaml
 ```
 
