@@ -174,6 +174,33 @@ Or with Docker:
 docker run -v ./config.yaml:/app/config.yaml henkedk/thirdeye-bridge
 ```
 
+#### Run as a systemd service (optional)
+
+If you installed with a virtual environment, point the service at the venv Python. Otherwise use the system path.
+
+```bash
+sudo tee /etc/systemd/system/thirdeye-bridge.service << 'EOF'
+[Unit]
+Description=thirdeye bridge
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# If using a venv, use the full path:
+# ExecStart=/home/pi/thirdeye-env/bin/thirdeye-bridge --config /home/pi/config.yaml
+ExecStart=thirdeye-bridge --config /home/pi/config.yaml
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now thirdeye-bridge
+```
+
 ### 4. That's it
 
 Cameras are discovered automatically from Protect's database. New cameras adopted into Protect are picked up within 60 seconds.
