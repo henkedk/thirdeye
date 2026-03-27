@@ -12,7 +12,7 @@ import (
 var requiredTables = map[string][]string{
 	"events": {
 		"id", "type", "start", "end", "cameraId", "score",
-		"smartDetectTypes", "metadata", "locked", "thumbnailId",
+		"smartDetectTypes", "metadata", "locked",
 		"createdAt", "updatedAt",
 	},
 	"smartDetectObjects": {
