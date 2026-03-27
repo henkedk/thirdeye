@@ -81,11 +81,11 @@ func (d *DB) InsertEvent(cameraID, detectType string, timestamp int64, score int
 
 	// Insert event
 	_, err = tx.Exec(`INSERT INTO events (id, type, start, "cameraId", score, "smartDetectTypes",
-		metadata, locked, "thumbnailId", "createdAt", "updatedAt")
+		metadata, locked, "createdAt", "updatedAt")
 		VALUES ($1, 'smartDetectZone', $2, $3, $4, $5::json,
-		$6::json, false, $7, $8, $9)`,
+		$6::json, false, $7, $8)`,
 		eventID, adjustedStart, cameraID, score, smartDetectTypes,
-		metadata, thumbnailID, now, now)
+		metadata, now, now)
 	if err != nil {
 		return nil, fmt.Errorf("inserting event: %w", err)
 	}
