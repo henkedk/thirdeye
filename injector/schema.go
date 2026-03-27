@@ -21,7 +21,7 @@ var requiredTables = map[string][]string{
 		"createdAt", "updatedAt",
 	},
 	"thumbnails": {
-		"id", "eventId", "cameraId", "createdAt", "data",
+		"id", "eventId", "cameraId", "createdAt", "content",
 	},
 	"cameras": {
 		"id", "mac", "host", "isThirdPartyCamera", "isAdopted",

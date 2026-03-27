@@ -101,7 +101,7 @@ func (d *DB) InsertEvent(cameraID, detectType string, timestamp int64, score int
 	}
 
 	// Insert thumbnail
-	_, err = tx.Exec(`INSERT INTO thumbnails (id, "eventId", "cameraId", "createdAt", data)
+	_, err = tx.Exec(`INSERT INTO thumbnails (id, "eventId", "cameraId", "createdAt", content)
 		VALUES ($1, $2, $3, $4, $5)`,
 		thumbnailID, eventID, cameraID, now, thumbnailData)
 	if err != nil {
