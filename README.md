@@ -96,6 +96,9 @@ Events appear in Protect's timeline with thumbnails, timestamps, and proper smar
 SSH into your UDM (UniFi OS → System → Advanced → Enable SSH):
 
 ```bash
+# Create the install directory
+mkdir -p /data/thirdeye-injector/
+
 # Download the latest release
 curl -L https://github.com/henkedk/thirdeye/releases/latest/download/thirdeye-injector-arm64 \
   -o /data/thirdeye-injector/thirdeye-injector
@@ -124,16 +127,25 @@ systemctl enable --now thirdeye-injector
 
 ### 2. Auto-restore after firmware updates (optional)
 
+UDM firmware updates wipe `/etc/` but preserve `/data/`. Since the binary and service file live in `/data/`, they survive updates — but the systemd symlink in `/etc/systemd/system/` gets wiped.
+
+To auto-restore the service after firmware updates, you need the on-boot-script system from [unifios-utilities](https://github.com/unifi-utilities/unifios-utilities/tree/main/on-boot-script):
+
 ```bash
-mkdir -p /data/on_boot.d
+# Install on-boot-script (one-time setup)
+curl -fsL "https://raw.githubusercontent.com/unifi-utilities/unifios-utilities/HEAD/on-boot-script/remote_install.sh" | sh
+
+# Create the thirdeye boot hook
 cat > /data/on_boot.d/10-thirdeye-injector.sh << 'EOF'
-#!/bin/bash
+#!/bin/sh
 ln -sf /data/thirdeye-injector/thirdeye-injector.service /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable --now thirdeye-injector
 EOF
 chmod +x /data/on_boot.d/10-thirdeye-injector.sh
 ```
+
+After a firmware update, the boot hook runs automatically and restores the service.
 
 ### 3. Run the bridge
 
